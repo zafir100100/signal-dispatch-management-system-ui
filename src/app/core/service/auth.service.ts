@@ -66,6 +66,15 @@ export class AuthService {
             role: r,
             token: tempData?.user_role === "Admin" ? "admin-token" : tempData?.user_role === "Instructor" ? "teacher-token" : tempData?.user_role === "student-token" ? "Student" : "Student",
             password: tempData?.user_password ?? "student@123",
+            user_full_name: tempData?.user_full_name,
+            user_name: tempData?.user_name,
+            user_password: tempData?.user_password,
+            user_email: tempData?.user_email,
+            user_army_number: tempData?.user_army_number,
+            user_rank: tempData?.user_rank,
+            user_role: tempData?.user_role,
+            user_serving_unit: tempData?.user_serving_unit,
+            user_status: tempData?.user_status,
           };
 
           localStorage.setItem('currentUser', JSON.stringify(user));
