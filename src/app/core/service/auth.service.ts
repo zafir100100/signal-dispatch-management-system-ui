@@ -23,7 +23,7 @@ export class AuthService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-  
+
   // login(username: string, password: string) {
   //   return this.http
   //     .post<any>(`${environment.apiUrl}/authenticate`, {
@@ -56,15 +56,15 @@ export class AuthService {
         map((o) => {
           let tempData = o?.payload?.output;
           let r: Role = Role.Student;
-          r = tempData?.user_role === "Admin" ? Role.Admin : tempData?.user_role === "Instructor" ? Role.Teacher : tempData?.user_role === "Clerk" ? Role.Student : Role.Teacher;
+          r = tempData?.user_role === "Admin" ? Role.Admin : tempData?.user_role === "Instructor" ? Role.Teacher : tempData?.user_role === "Clerk" || tempData?.user_role === "Register Clerk" ? Role.Student : Role.Teacher;
           let user: User = {
             id: tempData?.id ?? 0,
-            img: tempData?.user_role === "Admin" ? "assets/images/user/admin.jpg" : tempData?.user_role === "Instructor" ? "assets/images/user/teacher.jpg" : tempData?.user_role === "Clerk" ? "assets/images/user/student.jpg" : "assets/images/user/student.jpg",
+            img: tempData?.user_role === "Admin" ? "assets/images/user/admin.jpg" : tempData?.user_role === "Instructor" ? "assets/images/user/teacher.jpg" : tempData?.user_role === "Clerk" || tempData?.user_role === "Register Clerk" ? "assets/images/user/student.jpg" : "assets/images/user/student.jpg",
             username: tempData?.user_name ?? "admin@school.org",
             firstName: tempData?.user_full_name ?? "",
             lastName: '',
             role: r,
-            token: tempData?.user_role === "Admin" ? "admin-token" : tempData?.user_role === "Instructor" ? "teacher-token" : tempData?.user_role === "student-token" ? "Student" : "Student",
+            token: tempData?.user_role === "Admin" ? "admin-token" : tempData?.user_role === "Instructor" ? "teacher-token" : tempData?.user_role === "Clerk" || tempData?.user_role === "Register Clerk" ? "student-token" : "student-token",
             password: tempData?.user_password ?? "student@123",
             user_full_name: tempData?.user_full_name,
             user_name: tempData?.user_name,
