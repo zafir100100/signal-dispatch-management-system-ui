@@ -11,7 +11,7 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'envelop-details',
+    path: 'envelop-details/:id',
     component: EnvelopDetailsComponent,
   },
   {
