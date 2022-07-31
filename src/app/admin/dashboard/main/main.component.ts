@@ -17,10 +17,16 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      user_name: [null],
-      user_email: [null, [Validators.required, Validators.email, Validators.minLength(5)],],
-      user_role: ['Clerk', [Validators.required, Validators.minLength(5)],],
+      id: [null],
+      user_full_name: [null,[Validators.required]],
+      user_name: [null, [Validators.required]],
       user_password: [null, [Validators.required, Validators.minLength(5)],],
+      user_email: [null, [Validators.required, Validators.email, Validators.minLength(5)],],
+      user_army_number: [null],
+      user_rank: [null],
+      user_role: ['Clerk', [Validators.required, Validators.minLength(5)],],
+      user_serving_unit: [null],
+      user_status: [null],
     });
   }
 
@@ -32,6 +38,8 @@ export class MainComponent implements OnInit {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
         },
         (f) => {
+          console.log(f);
+          
           Swal.fire({ icon: 'error', title: 'Oops...', text: f?.error?.message ?? 'Something went wrong. Please try again later.' });
         }
       );

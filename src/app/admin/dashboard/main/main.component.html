@@ -26,8 +26,47 @@
                 <h5>Create User</h5>
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input formControlName="user_email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="user_full_name" class="form-label">Full name</label>
+                    <input formControlName="user_full_name" type="text" class="form-control" id="user_full_name">
+                  </div>
+                  <div *ngIf="form.controls['user_full_name'].invalid" class="text-danger mt-n3">
+                    <small>Fullname is required</small>
+                  </div>
+                  <div class="mb-3">
+                    <label for="user_name" class="form-label">Username</label>
+                    <input formControlName="user_name" type="text" class="form-control" id="user_name">
+                  </div>
+                  <div *ngIf="form.controls['user_name'].invalid" class="text-danger mt-n3">
+                    <small>Username is required</small>
+                  </div>
+                  <div class="mb-3">
+                    <label for="user_password" class="form-label">Password</label>
+                    <input formControlName="user_password" type="password" class="form-control" id="user_password">
+                  </div>
+                  <div *ngIf="form.controls['user_password'].invalid" class="text-danger mt-n3">
+                    <small>Password is invalid</small>
+                  </div>
+                  <div class="mb-3">
+                    <label for="user_email" class="form-label">Email address</label>
+                    <input formControlName="user_email" type="email" class="form-control" id="user_email"
+                      aria-describedby="emailHelp">
+                  </div>
+                  <div *ngIf="form.controls['user_email'].invalid" class="text-danger mt-n3">
+                    <small>Email is Invalid</small>
+                  </div>
+                  <div class="mb-3">
+                    <label for="user_army_number" class="form-label">Army number</label>
+                    <input formControlName="user_army_number" type="text" class="form-control" id="user_army_number">
+                  </div>
+                  <div *ngIf="form.controls['user_army_number'].invalid" class="text-danger mt-n3">
+                    <small>Army number is Invalid</small>
+                  </div>
+                  <div class="mb-3">
+                    <label for="user_rank" class="form-label">Rank</label>
+                    <input formControlName="user_rank" type="text" class="form-control" id="user_rank">
+                  </div>
+                  <div *ngIf="form.controls['user_rank'].invalid" class="text-danger mt-n3">
+                    <small>Rank is Invalid</small>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputRole" class="form-label">Role</label>
@@ -35,11 +74,18 @@
                       <option value="Admin">Admin</option>
                       <option value="Instructor">Instructor</option>
                       <option value="Clerk">Clerk</option>
+                      <option value="Register Clerk">Register Clerk</option>
                     </select>
                   </div>
+                  <div *ngIf="form.controls['user_role'].invalid" class="text-danger mt-n3">
+                    <small>Role is Invalid</small>
+                  </div>
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input formControlName="user_password" type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="user_serving_unit" class="form-label">Serving unit</label>
+                    <input formControlName="user_serving_unit" type="text" class="form-control" id="user_serving_unit">
+                  </div>
+                  <div *ngIf="form.controls['user_serving_unit'].invalid" class="text-danger mt-n3">
+                    <small>Serving unit is Invalid</small>
                   </div>
                   <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
                 </form>
