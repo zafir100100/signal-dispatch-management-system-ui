@@ -9,10 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserListComponent } from './user-list/user-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [MainComponent, UserListComponent],
   imports: [
-    CommonModule,
     DashboardRoutingModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
@@ -22,6 +22,9 @@ import { UserListComponent } from './user-list/user-list.component';
     NgApexchartsModule,
     MatButtonModule,
     MatMenuModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class DashboardModule {}

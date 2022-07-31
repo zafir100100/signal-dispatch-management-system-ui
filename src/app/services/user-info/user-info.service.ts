@@ -15,8 +15,8 @@ export class UserInfoService {
 
   url: string = "http://" + environment.sdmsApiBaseUrl + ":" + environment.sdmsApiPort.toString() + "/";
 
-  create(){
-    return this.httpClient.post<any>(this.url + 'create-user', headerOption);
+  create(requestBody: any){
+    return this.httpClient.post<any>(this.url + 'create-user', requestBody, headerOption);
   }
 
   getById(){
