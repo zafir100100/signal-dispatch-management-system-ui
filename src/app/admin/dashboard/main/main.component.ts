@@ -38,8 +38,6 @@ export class MainComponent implements OnInit {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
         },
         (f) => {
-          console.log(f);
-          
           Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
         }
       );

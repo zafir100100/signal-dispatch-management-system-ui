@@ -16,27 +16,27 @@ export class TransitSlipService {
 
   url: string = "http://" + environment.sdmsApiBaseUrl + ":" + environment.sdmsApiPort.toString() + "/";
 
-  create(){
-    return this.httpClient.post<any>(this.url + 'create-transit-slip', headerOption);
+  create(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'create-transit-slip', requestBody, headerOption);
   }
 
-  getById(){
-    return this.httpClient.post<any>(this.url + 'get-user-by-id', headerOption);
+  getById(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-user-by-id', requestBody, headerOption);
   }
 
-  getBySlipNo(){
-    return this.httpClient.post<any>(this.url + 'get-transit-slip-by-slip-no', headerOption);
+  getBySlipNo(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-transit-slip-by-slip-no', requestBody, headerOption);
   }
 
-  delete(){
-    return this.httpClient.delete<any>(this.url + 'delete-transit-slip', headerOption);
+  // delete(requestBody: any) {
+  //   return this.httpClient.delete<any>(this.url + 'delete-transit-slip', requestBody, headerOption);
+  // }
+
+  update(requestBody: any) {
+    return this.httpClient.patch<any>(this.url + 'update-transit-slip', requestBody, headerOption);
   }
- 
-  update(){
-    return this.httpClient.patch<any>(this.url + 'update-transit-slip', headerOption);
-  }
- 
-  getAllByUser(){
-    return this.httpClient.post<any>(this.url + 'get-transit-slip-by-user', headerOption);
+
+  getAllByUser(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-transit-slip-by-user', requestBody, headerOption);
   }
 }
