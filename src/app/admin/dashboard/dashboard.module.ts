@@ -10,8 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserListComponent } from './user-list/user-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserDetailsComponent } from './user-details/user-details.component';
 @NgModule({
-  declarations: [MainComponent, UserListComponent],
+  declarations: [MainComponent, UserListComponent, UserDetailsComponent],
   imports: [
     DashboardRoutingModule,
     NgxEchartsModule.forRoot({

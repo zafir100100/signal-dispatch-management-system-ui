@@ -15,35 +15,35 @@ export class UserInfoService {
 
   url: string = "http://" + environment.sdmsApiBaseUrl + ":" + environment.sdmsApiPort.toString() + "/";
 
-  create(requestBody: any){
+  create(requestBody: any) {
     return this.httpClient.post<any>(this.url + 'create-user', requestBody, headerOption);
   }
 
-  getById(){
-    return this.httpClient.post<any>(this.url + 'get-user-by-id', headerOption);
+  getById(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-user-by-id', requestBody, headerOption);
   }
 
-  getByUnAndPass(requestBody: any){
+  getByUnAndPass(requestBody: any) {
     return this.httpClient.post<any>(this.url + 'get-user-by-username-and-password', requestBody, headerOption);
   }
 
-  deleteById(){
-    return this.httpClient.delete<any>(this.url + 'delete-user', headerOption);
-  }
- 
-  updateById(){
-    return this.httpClient.patch<any>(this.url + 'update-user', headerOption);
-  }
- 
-  getByUn(){
-    return this.httpClient.post<any>(this.url + 'get-user-by-username', headerOption);
+  // deleteById(requestBody: any) {
+  //   return this.httpClient.delete<any>(this.url + 'delete-user', requestBody, headerOption);
+  // }
+
+  updateById(requestBody: any) {
+    return this.httpClient.patch<any>(this.url + 'update-user', requestBody, headerOption);
   }
 
-  getByLikeFln(){
-    return this.httpClient.post<any>(this.url + 'get-user-like-fullname', headerOption);
+  getByUn(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-user-by-username', requestBody, headerOption);
   }
 
-  getAll(){
+  getByLikeFln(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-user-like-fullname', requestBody, headerOption);
+  }
+
+  getAll() {
     return this.httpClient.get<any>(this.url + 'get-all-user', headerOption);
   }
 }

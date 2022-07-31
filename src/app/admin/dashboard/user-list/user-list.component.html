@@ -49,7 +49,7 @@
                     <td>{{item?.user_email}}</td>
                     <td>{{item?.user_role}}</td>
                     <td>
-                      <button routerLink="envelop-details" mat-flat-button color="primary">Details</button>
+                      <button [routerLink]="['../user-details', item?.id]" mat-flat-button color="primary">Details</button>
                     </td>
                   </tr>
                 </tbody>
