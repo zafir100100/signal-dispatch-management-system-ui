@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
         (f) => {
           console.log(f);
           
-          Swal.fire({ icon: 'error', title: 'Oops...', text: f?.error?.message ?? 'Something went wrong. Please try again later.' });
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
         }
       );
     }

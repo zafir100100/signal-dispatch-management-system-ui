@@ -15,31 +15,31 @@ export class DespatchEnvelopService {
 
   url: string = "http://" + environment.sdmsApiBaseUrl + ":" + environment.sdmsApiPort.toString() + "/";
 
-  create(){
-    return this.httpClient.post<any>(this.url + 'create-despatch-envelop', headerOption);
+  create(requestBody: any){
+    return this.httpClient.post<any>(this.url + 'create-despatch-envelop', requestBody, headerOption);
   }
 
-  getById(){
+  getById(requestBody: any){
     return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-id', headerOption);
   }
 
-  getByLetterNo(){
+  getByLetterNo(requestBody: any){
     return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-letter-no', headerOption);
   }
 
-  delete(){
-    return this.httpClient.delete<any>(this.url + 'delete-despatch-envelop', headerOption);
-  }
+  // delete(requestBody: any){
+  //   return this.httpClient.delete<any>(this.url + 'delete-despatch-envelop', headerOption);
+  // }
  
-  update(){
+  update(requestBody: any){
     return this.httpClient.patch<any>(this.url + 'update-despatch-envelop', headerOption);
   }
  
-  getByCreatedBy(){
+  getByCreatedBy(requestBody: any){
     return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-user-created', headerOption);
   }
 
-  getByCreatedFor(){
+  getByCreatedFor(requestBody: any){
     return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-for-user', headerOption);
   }
 }

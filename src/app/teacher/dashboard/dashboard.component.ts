@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DespatchEnvelopService } from 'src/app/services/despatch-envelop/despatch-envelop.service';
+import Swal from 'sweetalert2';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -16,6 +19,7 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive,
 } from 'ng-apexcharts';
+import { User } from 'src/app/core/models/user';
 
 export type avgLecChartOptions = {
   series: ApexAxisChartSeries;
@@ -51,12 +55,44 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
   public avgLecChartOptions: Partial<avgLecChartOptions>;
   public pieChartOptions: Partial<pieChartOptions>;
-
-  constructor() {}
+  form: FormGroup;
+  form2: FormGroup;
+  isForm2Visibile: boolean = false;
+  user = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private formBuilder: FormBuilder, private despatchEnvelopService: DespatchEnvelopService) { }
   ngOnInit() {
     this.chart1();
     this.chart2();
+    this.form = this.formBuilder.group({
+      id: [null],
+      letter_no: [null, [Validators.required]],
+      date_time_group: [null],
+      originator_no: [null],
+      from_address: [null],
+      to_address: [null],
+      precedance: [null],
+      security_classification: [null],
+      time_of_receive: [null],
+      despatch_status: [null],
+      time_of_delivery: [null],
+      created_by: [this.user?.id],
+    });
+    this.form2 = this.formBuilder.group({
+      id: [null],
+      letter_no: [null, [Validators.required]],
+      date_time_group: [null],
+      originator_no: [null],
+      from_address: [null],
+      to_address: [null],
+      precedance: [null],
+      security_classification: [null],
+      time_of_receive: [null],
+      despatch_status: [null],
+      time_of_delivery: [null],
+      created_by: [this.user?.id],
+    });
   }
+
   private chart1() {
     this.avgLecChartOptions = {
       series: [
@@ -123,6 +159,7 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
   private chart2() {
     this.pieChartOptions = {
       series: [44, 55, 13, 43, 22],
@@ -144,5 +181,37 @@ export class DashboardComponent implements OnInit {
         },
       ],
     };
+  }
+
+  onDuplicateButtonClick() {
+    this.isForm2Visibile = !this.isForm2Visibile;
+    this.form2.patchValue(this.form.value);
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.despatchEnvelopService.create(this.form.value).subscribe(
+        (t) => {
+          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+        },
+        (f) => {
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+        }
+      );
+    }
+  }
+
+  onSubmit2() {
+    if (this.form2.valid) {
+      this.despatchEnvelopService.create(this.form2.value).subscribe(
+        (t) => {
+          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+        },
+        (f) => {
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+        }
+      );
+    }
+
   }
 }

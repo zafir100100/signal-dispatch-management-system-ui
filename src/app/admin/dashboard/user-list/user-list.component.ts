@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
         this.users = t?.payload?.output ?? [];
       },
       (f) => {
-        Swal.fire({ icon: 'error', title: 'Oops...', text: f?.error?.message ?? 'Something went wrong. Please try again later.' });
+        Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
       }
     );
   }

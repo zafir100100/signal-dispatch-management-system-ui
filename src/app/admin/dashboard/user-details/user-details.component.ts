@@ -54,7 +54,7 @@ export class UserDetailsComponent implements OnInit {
         this.form.patchValue(this.user);
       },
       (f) => {
-        Swal.fire({ icon: 'error', title: 'Oops...', text: f?.error?.message ?? 'Something went wrong. Please try again later.' });
+        Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
       }
     );
   }

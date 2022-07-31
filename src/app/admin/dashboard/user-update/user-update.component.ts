@@ -63,10 +63,10 @@ export class UserUpdateComponent implements OnInit {
     if(this.form.valid){
       this.userInfoService.updateById(this.form.value).subscribe(
         (t) => {
-          Swal.fire({ icon: 'success', title: 'Success', text: 'User updated successfully.' });
+          Swal.fire({ icon: 'success', title: 'Success', text: t?.message ?? 'Operation Successful.' });
         },
         (f) => {
-          Swal.fire({ icon: 'error', title: 'Oops...', text: f?.error?.message ?? 'Something went wrong. Please try again later.' });
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
         }
       );
     }
