@@ -30,7 +30,7 @@
                     <th>User Role</th>
                     <!-- <th>User Password</th> -->
                     <!-- <th>Date Of Create</th> -->
-                    <th>Action</th>
+                    <th colspan="2">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,6 +50,9 @@
                     <td>{{item?.user_role}}</td>
                     <td>
                       <button [routerLink]="['../user-details', item?.id]" mat-flat-button color="primary">Details</button>
+                    </td>
+                    <td>
+                      <button [routerLink]="['../user-update', item?.id]" mat-flat-button color="primary">Update</button>
                     </td>
                   </tr>
                 </tbody>

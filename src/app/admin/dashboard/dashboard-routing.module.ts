@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'user-details/:id',
     component: UserDetailsComponent
+  },
+  {
+    path: 'user-update/:id',
+    component: UserUpdateComponent
   },
   {
     path: 'teacher-dashboard',
