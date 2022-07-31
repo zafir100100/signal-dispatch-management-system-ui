@@ -37,12 +37,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Business studies</td>
-                      <td>Standard 12</td>
-                      <td>10:30 AM</td>
-                      <td>45 Min</td>
+                    <tr *ngFor="let item of envelops">
+                      <td>{{item?.id}}</td>
+                      <td>{{item?.from_address}}</td>
+                      <td>{{item?.to_address}}</td>
+                      <td>{{item?.date_time_group}}</td>
+                      <td>{{item?.letter_no}}</td>
                       <td>
                         <button routerLink="envelop-details" mat-flat-button color="primary">Details</button>
                       </td>
