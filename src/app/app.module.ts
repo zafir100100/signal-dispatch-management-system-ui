@@ -31,6 +31,8 @@ import {
   HttpClient,
 } from '@angular/common/http';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -68,6 +70,7 @@ export function createTranslateLoader(http: HttpClient): any {
     // core & shared
     CoreModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
