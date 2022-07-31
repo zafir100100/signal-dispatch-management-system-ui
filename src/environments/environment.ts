@@ -10,7 +10,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:4200',
-  sdmsApiBaseUrl: 'http://localhost',
+  sdmsApiBaseUrl: 'localhost',
   sdmsApiPort: 8090,
 };
 

@@ -23,8 +23,8 @@ export class UserInfoService {
     return this.httpClient.post<any>(this.url + 'get-user-by-id', headerOption);
   }
 
-  getByUnAndPass(){
-    return this.httpClient.post<any>(this.url + 'get-user-by-username-and-password', headerOption);
+  getByUnAndPass(requestBody: any){
+    return this.httpClient.post<any>(this.url + 'get-user-by-username-and-password', requestBody, headerOption);
   }
 
   deleteById(){
