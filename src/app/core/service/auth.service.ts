@@ -58,7 +58,7 @@ export class AuthService {
           let r: Role = Role.Student;
           r = tempData?.user_role === "Admin" ? Role.Admin : tempData?.user_role === "Instructor" ? Role.Teacher : tempData?.user_role === "Clerk" ? Role.Student : Role.Teacher;
           let user: User = {
-            id: tempData?.id ?? 1,
+            id: tempData?.id ?? 0,
             img: tempData?.user_role === "Admin" ? "assets/images/user/admin.jpg" : tempData?.user_role === "Instructor" ? "assets/images/user/teacher.jpg" : tempData?.user_role === "Clerk" ? "assets/images/user/student.jpg" : "assets/images/user/student.jpg",
             username: tempData?.user_name ?? "admin@school.org",
             firstName: tempData?.user_full_name ?? "",
@@ -67,10 +67,6 @@ export class AuthService {
             token: tempData?.user_role === "Admin" ? "admin-token" : tempData?.user_role === "Instructor" ? "teacher-token" : tempData?.user_role === "student-token" ? "Student" : "Student",
             password: tempData?.user_password ?? "student@123",
           };
-          // let user = o;
-          console.log('hi; ');
-          console.log(user);
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
 
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
