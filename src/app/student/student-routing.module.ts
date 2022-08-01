@@ -6,6 +6,7 @@ import { ClerkViewEnvelopListComponent } from './clerk-view-envelop-list/clerk-v
 import { TransitSlipComponent } from './transit-slip/transit-slip.component';
 import { TransitSlipHistoryComponent } from './transit-slip-history/transit-slip-history.component';
 import { TransitSlipReceivedComponent } from './transit-slip-received/transit-slip-received.component';
+import { TransitSlipDetailsComponent } from './transit-slip-details/transit-slip-details.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'transit-slip-received',
     component: TransitSlipReceivedComponent,
+  },
+  {
+    path: 'transit-slip-details/:id',
+    component: TransitSlipDetailsComponent,
   },
   { path: '**', component: Page404Component },
 ];

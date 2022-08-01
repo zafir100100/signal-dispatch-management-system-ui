@@ -1,44 +1,44 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexYAxis,
-  ApexStroke,
-  ApexTooltip,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexResponsive,
-  ApexLegend,
-  ApexFill,
-} from 'ng-apexcharts';
 import { DespatchEnvelopService } from 'src/app/services/despatch-envelop/despatch-envelop.service';
 import Swal from 'sweetalert2';
 
-export type barChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  responsive: ApexResponsive[];
-  xaxis: ApexXAxis;
-  legend: ApexLegend;
-  fill: ApexFill;
-};
+// import {
+//   ChartComponent,
+//   ApexAxisChartSeries,
+//   ApexChart,
+//   ApexXAxis,
+//   ApexYAxis,
+//   ApexStroke,
+//   ApexTooltip,
+//   ApexDataLabels,
+//   ApexPlotOptions,
+//   ApexResponsive,
+//   ApexLegend,
+//   ApexFill,
+// } from 'ng-apexcharts';
 
-export type areaChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  stroke: ApexStroke;
-  tooltip: ApexTooltip;
-  dataLabels: ApexDataLabels;
-  legend: ApexLegend;
-  colors: string[];
-};
+// export type barChartOptions = {
+//   series: ApexAxisChartSeries;
+//   chart: ApexChart;
+//   dataLabels: ApexDataLabels;
+//   plotOptions: ApexPlotOptions;
+//   responsive: ApexResponsive[];
+//   xaxis: ApexXAxis;
+//   legend: ApexLegend;
+//   fill: ApexFill;
+// };
+
+// export type areaChartOptions = {
+//   series: ApexAxisChartSeries;
+//   chart: ApexChart;
+//   xaxis: ApexXAxis;
+//   yaxis: ApexYAxis;
+//   stroke: ApexStroke;
+//   tooltip: ApexTooltip;
+//   dataLabels: ApexDataLabels;
+//   legend: ApexLegend;
+//   colors: string[];
+// };
 
 @Component({
   selector: 'app-dashboard',

@@ -21,7 +21,7 @@ export class TransitSlipService {
   }
 
   getById(requestBody: any) {
-    return this.httpClient.post<any>(this.url + 'get-user-by-id', requestBody, headerOption);
+    return this.httpClient.post<any>(this.url + 'get-transit-slip-by-id', requestBody, headerOption);
   }
 
   getBySlipNo(requestBody: any) {

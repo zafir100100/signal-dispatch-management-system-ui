@@ -58,7 +58,11 @@
                       <td>{{item?.transit_method}}</td>
                       <td>{{item?.name_of_courier}}</td>
                       <td>
-                        <button routerLink="" mat-flat-button color="primary">Next</button>
+                        <a [routerLink]="['../transit-slip-details', item?.id]">
+                          <button class="btn btn-success">
+                            Details
+                          </button>
+                        </a>
                       </td>
                     </tr>
                   </tbody>

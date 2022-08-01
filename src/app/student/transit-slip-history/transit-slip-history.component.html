@@ -43,14 +43,16 @@
                     <td>{{item?.transit_slip_no}}</td>
                     <td>
                       <select class="form-select" aria-label="Default select example" [disabled]="true">
-                        <option *ngFor="let user of users" [ngValue]="user?.id" [selected]="user?.id == item?.transit_from">
+                        <option *ngFor="let user of users" [ngValue]="user?.id"
+                          [selected]="user?.id == item?.transit_from">
                           {{user?.user_full_name}}
                         </option>
                       </select>
                     </td>
                     <td>
                       <select class="form-select" aria-label="Default select example" [disabled]="true">
-                        <option *ngFor="let user of users" [ngValue]="user?.id" [selected]="user?.id == item?.transit_to">
+                        <option *ngFor="let user of users" [ngValue]="user?.id"
+                          [selected]="user?.id == item?.transit_to">
                           {{user?.user_full_name}}
                         </option>
                       </select>
@@ -58,7 +60,11 @@
                     <td>{{item?.transit_method}}</td>
                     <td>{{item?.name_of_courier}}</td>
                     <td>
-                      <button routerLink="" mat-flat-button color="primary">Next</button>
+                      <a [routerLink]="['../transit-slip-details', item?.id]">
+                        <button class="btn btn-success">
+                          Details
+                        </button>
+                      </a>
                     </td>
                   </tr>
                 </tbody>
