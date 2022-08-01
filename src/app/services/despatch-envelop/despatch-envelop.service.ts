@@ -23,6 +23,10 @@ export class DespatchEnvelopService {
     return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-id', requestBody, headerOption);
   }
 
+  getAll() {
+    return this.httpClient.get<any>(this.url + 'get-all-despatch-envelop', headerOption);
+  }
+
   getByLetterNo(requestBody: any) {
     return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-letter-no', requestBody, headerOption);
   }
