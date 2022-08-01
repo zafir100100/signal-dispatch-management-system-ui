@@ -14,7 +14,7 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'view-envelope',
+    path: 'view-envelope/:id',
     component: ClerkViewEnvelopListComponent,
   },
   {

@@ -44,7 +44,7 @@
                     <td>{{item?.date_time_group}}</td>
                     <td>{{item?.letter_no}}</td>
                     <td>
-                      <button routerLink="" mat-flat-button color="primary">Next</button>
+                      <button [routerLink]="['../view-envelope', item?.id]" mat-flat-button color="primary">Details</button>
                     </td>
                   </tr>
                 </tbody>
