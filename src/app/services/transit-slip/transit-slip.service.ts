@@ -36,7 +36,11 @@ export class TransitSlipService {
     return this.httpClient.patch<any>(this.url + 'update-transit-slip', requestBody, headerOption);
   }
 
-  getAllByUser(requestBody: any) {
+  getAllTransitFromByUser(requestBody: any) {
     return this.httpClient.post<any>(this.url + 'get-transit-slip-by-user', requestBody, headerOption);
+  }
+
+  getAllTransitToByUser(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-transit-slip-for-user', requestBody, headerOption);
   }
 }

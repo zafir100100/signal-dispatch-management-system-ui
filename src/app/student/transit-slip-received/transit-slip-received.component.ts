@@ -4,11 +4,11 @@ import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-transit-slip-history',
-  templateUrl: './transit-slip-history.component.html',
-  styleUrls: ['./transit-slip-history.component.sass']
+  selector: 'app-transit-slip-received',
+  templateUrl: './transit-slip-received.component.html',
+  styleUrls: ['./transit-slip-received.component.sass']
 })
-export class TransitSlipHistoryComponent implements OnInit {
+export class TransitSlipReceivedComponent implements OnInit {
   transitSlips: any[] = [];
   users: any[] = [];
   user = JSON.parse(localStorage.getItem('currentUser'));
@@ -16,15 +16,15 @@ export class TransitSlipHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUser();
-    this.getAllTsByUser();
+    this.getAllTsForUser();
   }
 
-  getAllTsByUser() {
+  getAllTsForUser() {
     if (this.user?.id) {
       let requestBody = {
-        transit_from: this.user?.id
+        transit_to: this.user?.id
       };
-      this.transitSlipService.getAllTransitFromByUser(requestBody).subscribe(
+      this.transitSlipService.getAllTransitToByUser(requestBody).subscribe(
         (res: any) => {
           this.transitSlips = res?.payload?.output ?? [];
         },

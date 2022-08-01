@@ -28,9 +28,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClerkViewEnvelopListComponent } from './clerk-view-envelop-list/clerk-view-envelop-list.component';
 import { TransitSlipComponent } from './transit-slip/transit-slip.component';
 import { TransitSlipHistoryComponent } from './transit-slip-history/transit-slip-history.component';
+import { TransitSlipReceivedComponent } from './transit-slip-received/transit-slip-received.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ClerkViewEnvelopListComponent, TransitSlipComponent, TransitSlipHistoryComponent],
+  declarations: [DashboardComponent, ClerkViewEnvelopListComponent, TransitSlipComponent, TransitSlipHistoryComponent, TransitSlipReceivedComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
