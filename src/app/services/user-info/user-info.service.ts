@@ -23,6 +23,10 @@ export class UserInfoService {
     return this.httpClient.post<any>(this.url + 'get-user-by-id', requestBody, headerOption);
   }
 
+  getByRole(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-user-by-role', requestBody, headerOption);
+  }
+
   getByUnAndPass(requestBody: any) {
     return this.httpClient.post<any>(this.url + 'get-user-by-username-and-password', requestBody, headerOption);
   }

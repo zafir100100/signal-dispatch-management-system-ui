@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 import { DespatchEnvelopService } from 'src/app/services/despatch-envelop/despatch-envelop.service';
 import Swal from 'sweetalert2';
 import {
@@ -55,14 +56,16 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
   public avgLecChartOptions: Partial<avgLecChartOptions>;
   public pieChartOptions: Partial<pieChartOptions>;
+  registration_clerks: any[] = [];
   form: FormGroup;
   form2: FormGroup;
   isForm2Visibile: boolean = false;
   user = JSON.parse(localStorage.getItem('currentUser'));
-  constructor(private formBuilder: FormBuilder, private despatchEnvelopService: DespatchEnvelopService) { }
+  constructor(private formBuilder: FormBuilder, private despatchEnvelopService: DespatchEnvelopService, private userInfoService: UserInfoService) { }
   ngOnInit() {
     // this.chart1();
     // this.chart2();
+    this.getAllRegistrationClerks();
     this.form = this.formBuilder.group({
       id: [null],
       letter_no: [null, [Validators.required]],
@@ -91,6 +94,20 @@ export class DashboardComponent implements OnInit {
       updated_by: [null],
       updated_at: [null],
     });
+  }
+
+  getAllRegistrationClerks() {
+    let requestBody = {
+      user_role: 'registration_clerk'
+    }
+    this.userInfoService.getByRole(requestBody).subscribe(
+      (t) => {
+        this.registration_clerks = t;
+      },
+      (f) => {
+        Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+      }
+    );
   }
 
   // private chart1() {
@@ -221,5 +238,39 @@ export class DashboardComponent implements OnInit {
       );
     }
 
+  }
+
+  onSend() {
+    if (this.form.valid) {
+      // this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ created_at: new Date() });
+      // this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ updated_at: new Date() });
+      // this.despatchEnvelopService.create(this.form2.value).subscribe(
+      //   (t) => {
+      //     Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+      //   },
+      //   (f) => {
+      //     Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+      //   }
+      // );
+    }
+  }
+
+  onSend2() {
+    if (this.form2.valid) {
+      // this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ created_at: new Date() });
+      // this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ updated_at: new Date() });
+      // this.despatchEnvelopService.create(this.form2.value).subscribe(
+      //   (t) => {
+      //     Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+      //   },
+      //   (f) => {
+      //     Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+      //   }
+      // );
+    }
   }
 }
