@@ -18,20 +18,27 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       id: [null],
-      user_full_name: [null,[Validators.required]],
+      user_full_name: [null, [Validators.required]],
       user_name: [null, [Validators.required]],
       user_password: [null, [Validators.required, Validators.minLength(5)],],
       user_email: [null, [Validators.required, Validators.email, Validators.minLength(5)],],
       user_army_number: [null],
       user_rank: [null],
-      user_role: ['Clerk', [Validators.required, Validators.minLength(5)],],
+      user_role: ['routing_clerk', [Validators.required, Validators.minLength(5)],],
       user_serving_unit: [null],
-      user_status: [null],
+      created_by: [null],
+      created_at: [null],
+      edited_by: [null],
+      edited_at: [null],
     });
   }
 
-  onSubmit(){
-    if(this.form.valid){
+  onSubmit() {
+    if (this.form.valid) {
+      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ created_at: new Date() });
+      this.form.patchValue({ edited_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ edited_at: new Date() });
       this.form.patchValue({ user_name: this.form.get('user_email')?.value });
       this.userInfoService.create(this.form.value).subscribe(
         (t) => {

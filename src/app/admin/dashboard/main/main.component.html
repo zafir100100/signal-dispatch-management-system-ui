@@ -71,10 +71,12 @@
                   <div class="mb-3">
                     <label for="exampleInputRole" class="form-label">Role</label>
                     <select formControlName="user_role" class="form-select" aria-label="Default select example">
-                      <option value="Admin">Admin</option>
-                      <option value="Instructor">Instructor</option>
-                      <option value="Clerk">Clerk</option>
-                      <option value="Register Clerk">Register Clerk</option>
+                      <option value="admin">Admin</option>
+                      <option value="instructor">Instructor</option>
+                      <option value="registration_clerk">Registration Clerk</option>
+                      <option value="routing_clerk">Routing Clerk</option>
+                      <option value="sorting_clerk">Sorting Clerk</option>
+                      <option value="bag_despatch_clerk">Bag Dispatch Clerk</option>
                     </select>
                   </div>
                   <div *ngIf="form.controls['user_role'].invalid" class="text-danger mt-n3">
