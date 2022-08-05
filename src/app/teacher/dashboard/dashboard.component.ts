@@ -79,6 +79,10 @@ export class DashboardComponent implements OnInit {
       created_at: [null],
       updated_by: [null],
       updated_at: [null],
+      isSendTicked: [false],
+      despatch_envelop_id: [null],
+      sent_from: [null],
+      sent_to: [null],
     });
     this.form2 = this.formBuilder.group({
       id: [null],
@@ -93,6 +97,10 @@ export class DashboardComponent implements OnInit {
       created_at: [null],
       updated_by: [null],
       updated_at: [null],
+      isSendTicked: [false],
+      despatch_envelop_id: [null],
+      sent_from: [null],
+      sent_to: [null],
     });
   }
 
@@ -102,7 +110,7 @@ export class DashboardComponent implements OnInit {
     }
     this.userInfoService.getByRole(requestBody).subscribe(
       (t) => {
-        this.registration_clerks = t;
+        this.registration_clerks = t?.payload?.output;
       },
       (f) => {
         Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
@@ -208,12 +216,13 @@ export class DashboardComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ created_at: new Date() });
+      // this.form.patchValue({ created_at: new Date() });
       this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ updated_at: new Date() });
+      // this.form.patchValue({ updated_at: new Date() });
       this.despatchEnvelopService.create(this.form.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+          this.form.patchValue({ despatch_envelop_id: t?.payload?.output?.id });
         },
         (f) => {
           Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
@@ -225,12 +234,13 @@ export class DashboardComponent implements OnInit {
   onSubmit2() {
     if (this.form2.valid) {
       this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ created_at: new Date() });
+      // this.form.patchValue({ created_at: new Date() });
       this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ updated_at: new Date() });
+      // this.form.patchValue({ updated_at: new Date() });
       this.despatchEnvelopService.create(this.form2.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+          this.form.patchValue({ despatch_envelop_id: t?.payload?.id });
         },
         (f) => {
           Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
@@ -242,18 +252,27 @@ export class DashboardComponent implements OnInit {
 
   onSend() {
     if (this.form.valid) {
-      // this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ created_at: new Date() });
-      // this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ updated_at: new Date() });
-      // this.despatchEnvelopService.create(this.form2.value).subscribe(
-      //   (t) => {
-      //     Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-      //   },
-      //   (f) => {
-      //     Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-      //   }
-      // );
+      console.log(1);
+      console.log(this.form.value);
+      console.log(this.user);
+      
+      
+      
+      if (this.form.get('isSendTicked')?.value == true && this.form.get('sent_to')?.value != null && this.form.get('despatch_envelop_id')?.value != null) {
+        console.log(1);
+        this.form.patchValue({ sent_from: Number(this.user?.id) });
+        this.despatchEnvelopService.createDespatchEnvelopDistribution(this.form.value).subscribe(
+          (t) => {
+            Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+            // this.form.patchValue({ despatch_envelop_id: t?.payload?.output?.id });
+          },
+          (f) => {
+            console.log(f);
+            
+            Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+          }
+        );
+      }
     }
   }
 
