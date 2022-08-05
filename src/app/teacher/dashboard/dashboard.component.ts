@@ -118,6 +118,81 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  onDuplicateButtonClick() {
+    this.isForm2Visibile = !this.isForm2Visibile;
+    this.form2.patchValue(this.form.value);
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ created_at: new Date() });
+      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ updated_at: new Date() });
+      this.despatchEnvelopService.create(this.form.value).subscribe(
+        (t) => {
+          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+          this.form.patchValue({ despatch_envelop_id: t?.payload?.output?.id });
+        },
+        (f) => {
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+        }
+      );
+    }
+  }
+
+  onSubmit2() {
+    if (this.form2.valid) {
+      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ created_at: new Date() });
+      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      // this.form.patchValue({ updated_at: new Date() });
+      this.despatchEnvelopService.create(this.form2.value).subscribe(
+        (t) => {
+          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+          this.form.patchValue({ despatch_envelop_id: t?.payload?.id });
+        },
+        (f) => {
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+        }
+      );
+    }
+
+  }
+
+  onSend() {
+    if (this.form.valid) {
+      if (this.form.get('isSendTicked')?.value == true && this.form.get('sent_to')?.value != null && this.form.get('despatch_envelop_id')?.value != null) {
+        this.form.patchValue({ sent_from: Number(this.user?.id) });
+        this.despatchEnvelopService.createDespatchEnvelopDistribution(this.form.value).subscribe(
+          (t) => {
+            Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+          },
+          (f) => {
+            Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+          }
+        );
+      }
+    }
+  }
+
+  onSend2() {
+    if (this.form2.valid) {
+      if (this.form2.get('isSendTicked')?.value == true && this.form2.get('sent_to')?.value != null && this.form2.get('despatch_envelop_id')?.value != null) {
+        this.form2.patchValue({ sent_from: Number(this.user?.id) });
+        this.despatchEnvelopService.createDespatchEnvelopDistribution(this.form2.value).subscribe(
+          (t) => {
+            Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+          },
+          (f) => {
+            Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+          }
+        );
+      }
+    }
+  }
+
+  
   // private chart1() {
   //   this.avgLecChartOptions = {
   //     series: [
@@ -207,89 +282,4 @@ export class DashboardComponent implements OnInit {
   //     ],
   //   };
   // }
-
-  onDuplicateButtonClick() {
-    this.isForm2Visibile = !this.isForm2Visibile;
-    this.form2.patchValue(this.form.value);
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ created_at: new Date() });
-      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ updated_at: new Date() });
-      this.despatchEnvelopService.create(this.form.value).subscribe(
-        (t) => {
-          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-          this.form.patchValue({ despatch_envelop_id: t?.payload?.output?.id });
-        },
-        (f) => {
-          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-        }
-      );
-    }
-  }
-
-  onSubmit2() {
-    if (this.form2.valid) {
-      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ created_at: new Date() });
-      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ updated_at: new Date() });
-      this.despatchEnvelopService.create(this.form2.value).subscribe(
-        (t) => {
-          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-          this.form.patchValue({ despatch_envelop_id: t?.payload?.id });
-        },
-        (f) => {
-          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-        }
-      );
-    }
-
-  }
-
-  onSend() {
-    if (this.form.valid) {
-      console.log(1);
-      console.log(this.form.value);
-      console.log(this.user);
-      
-      
-      
-      if (this.form.get('isSendTicked')?.value == true && this.form.get('sent_to')?.value != null && this.form.get('despatch_envelop_id')?.value != null) {
-        console.log(1);
-        this.form.patchValue({ sent_from: Number(this.user?.id) });
-        this.despatchEnvelopService.createDespatchEnvelopDistribution(this.form.value).subscribe(
-          (t) => {
-            Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-            // this.form.patchValue({ despatch_envelop_id: t?.payload?.output?.id });
-          },
-          (f) => {
-            console.log(f);
-            
-            Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-          }
-        );
-      }
-    }
-  }
-
-  onSend2() {
-    if (this.form2.valid) {
-      // this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ created_at: new Date() });
-      // this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      // this.form.patchValue({ updated_at: new Date() });
-      // this.despatchEnvelopService.create(this.form2.value).subscribe(
-      //   (t) => {
-      //     Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-      //   },
-      //   (f) => {
-      //     Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-      //   }
-      // );
-    }
-  }
 }

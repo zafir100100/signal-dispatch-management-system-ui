@@ -93,14 +93,11 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <!-- <div class="input-group"> -->
-                  <!-- <select formControlName="date_time_group" type="text" class="form-control" placeholder="Date"
-                      aria-describedby="textHelp">
-                    </select> -->
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="isSendTicked">
+                    Select Registration Clerk
                     <select class="custom-select" formControlName="sent_to">
-                      <option value="null" [disabled]="true">Select Registration Clerk</option>
+                      <option value="null" [disabled]="true">(Scroll Down)</option>
                       <option *ngFor="let item of registration_clerks" value={{item?.id}}>
                         {{item?.user_full_name}}
                       </option>
@@ -203,13 +200,27 @@
                 <div class="col"></div>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="isSendTicked">
+                  Select Registration Clerk
+                  <select class="custom-select" formControlName="sent_to">
+                    <option value="null" [disabled]="true">(Scroll Down)</option>
+                    <option *ngFor="let item of registration_clerks" value={{item?.id}}>
+                      {{item?.user_full_name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <div class="card-footer">
               <div class="row">
                 <!-- <div class="col">
                   <button type="button" class="btn btn-primary">Duplicate</button>
                 </div> -->
                 <div class="col">
-                  <button type="button" class="btn btn-primary" (click)="onSend2()">Send </button>
+                  <button type="button" class="btn btn-primary" (click)="onSend2()" [disabled]="form2.invalid || !form2.get('isSendTicked')?.value || !form2.get('sent_to')?.value">Send </button>
                 </div>
                 <!-- <div class="col">
                   <button type="button" class="btn btn-primary">Edit</button>
