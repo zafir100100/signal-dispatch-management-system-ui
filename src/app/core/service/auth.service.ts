@@ -55,16 +55,19 @@ export class AuthService {
       .pipe(
         map((o) => {
           let tempData = o?.payload?.output;
+          let getRole: string = tempData?.user_role;
+          getRole = getRole.toLowerCase();
+          let setRole: string = getRole.includes("clerk") ? "Student" : getRole === "instructor" ? "Instructor" : getRole === "admin" ? "Admin" : "Student";
           let r: Role = Role.Student;
-          r = tempData?.user_role === "Admin" ? Role.Admin : tempData?.user_role === "Instructor" ? Role.Teacher : tempData?.user_role === "Clerk" || tempData?.user_role === "Register Clerk" ? Role.Student : Role.Teacher;
+          r = setRole === "Student" ? Role.Student : setRole === "Instructor" ? Role.Teacher : setRole === "Admin" ? Role.Admin : Role.Student;
           let user: User = {
             id: tempData?.id ?? 0,
-            img: tempData?.user_role === "Admin" ? "assets/images/user/admin.jpg" : tempData?.user_role === "Instructor" ? "assets/images/user/teacher.jpg" : tempData?.user_role === "Clerk" || tempData?.user_role === "Register Clerk" ? "assets/images/user/student.jpg" : "assets/images/user/student.jpg",
+            img: setRole === "Admin" ? "assets/images/user/admin.jpg" : setRole === "Instructor" ? "assets/images/user/teacher.jpg" : setRole === "Student" ? "assets/images/user/student.jpg" : "assets/images/user/student.jpg",
             username: tempData?.user_name ?? "admin@school.org",
             firstName: tempData?.user_full_name ?? "",
             lastName: '',
             role: r,
-            token: tempData?.user_role === "Admin" ? "admin-token" : tempData?.user_role === "Instructor" ? "teacher-token" : tempData?.user_role === "Clerk" || tempData?.user_role === "Register Clerk" ? "student-token" : "student-token",
+            token: setRole === "Admin" ? "admin-token" : setRole === "Instructor" ? "teacher-token" : setRole === "Student" ? "student-token" : "student-token",
             password: tempData?.user_password ?? "student@123",
             user_full_name: tempData?.user_full_name,
             user_name: tempData?.user_name,
