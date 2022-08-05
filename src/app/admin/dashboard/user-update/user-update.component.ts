@@ -32,7 +32,10 @@ export class UserUpdateComponent implements OnInit {
       user_rank: [null],
       user_role: ['Clerk', [Validators.required, Validators.minLength(5)],],
       user_serving_unit: [null],
-      user_status: [null],
+      created_by: [null],
+      created_at: [null],
+      updated_by: [null],
+      updated_at: [null],
     });
     this._route.paramMap.subscribe(
       (params: ParamMap) => {
@@ -61,6 +64,8 @@ export class UserUpdateComponent implements OnInit {
 
   onSubmit() {
     if(this.form.valid){
+      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ updated_at: new Date() });
       this.userInfoService.updateById(this.form.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success', text: t?.message ?? 'Operation Successful.' });

@@ -28,8 +28,8 @@ export class MainComponent implements OnInit {
       user_serving_unit: [null],
       created_by: [null],
       created_at: [null],
-      edited_by: [null],
-      edited_at: [null],
+      updated_by: [null],
+      updated_at: [null],
     });
   }
 
@@ -37,8 +37,8 @@ export class MainComponent implements OnInit {
     if (this.form.valid) {
       this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
       this.form.patchValue({ created_at: new Date() });
-      this.form.patchValue({ edited_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ edited_at: new Date() });
+      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ updated_at: new Date() });
       this.form.patchValue({ user_name: this.form.get('user_email')?.value });
       this.userInfoService.create(this.form.value).subscribe(
         (t) => {

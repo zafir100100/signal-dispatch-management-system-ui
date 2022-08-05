@@ -74,8 +74,8 @@ export class DashboardComponent implements OnInit {
       security_classification: [null],
       created_by: [null],
       created_at: [null],
-      edited_by: [null],
-      edited_at: [null],
+      updated_by: [null],
+      updated_at: [null],
     });
     this.form2 = this.formBuilder.group({
       id: [null],
@@ -88,8 +88,8 @@ export class DashboardComponent implements OnInit {
       security_classification: [null],
       created_by: [null],
       created_at: [null],
-      edited_by: [null],
-      edited_at: [null],
+      updated_by: [null],
+      updated_at: [null],
     });
   }
 
@@ -192,8 +192,8 @@ export class DashboardComponent implements OnInit {
     if (this.form.valid) {
       this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
       this.form.patchValue({ created_at: new Date() });
-      this.form.patchValue({ edited_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ edited_at: new Date() });
+      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ updated_at: new Date() });
       this.despatchEnvelopService.create(this.form.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
@@ -209,8 +209,8 @@ export class DashboardComponent implements OnInit {
     if (this.form2.valid) {
       this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
       this.form.patchValue({ created_at: new Date() });
-      this.form.patchValue({ edited_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
-      this.form.patchValue({ edited_at: new Date() });
+      this.form.patchValue({ updated_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ updated_at: new Date() });
       this.despatchEnvelopService.create(this.form2.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
