@@ -30,7 +30,7 @@ export class UserUpdateComponent implements OnInit {
       user_email: [null, [Validators.required, Validators.email, Validators.minLength(5)],],
       user_army_number: [null],
       user_rank: [null],
-      user_role: ['Clerk', [Validators.required, Validators.minLength(5)],],
+      user_role: [null, [Validators.required, Validators.minLength(5)],],
       user_serving_unit: [null],
       created_by: [null],
       created_at: [null],
