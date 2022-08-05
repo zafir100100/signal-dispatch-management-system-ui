@@ -61,8 +61,8 @@ export class DashboardComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('currentUser'));
   constructor(private formBuilder: FormBuilder, private despatchEnvelopService: DespatchEnvelopService) { }
   ngOnInit() {
-    this.chart1();
-    this.chart2();
+    // this.chart1();
+    // this.chart2();
     this.form = this.formBuilder.group({
       id: [null],
       letter_no: [null, [Validators.required]],
@@ -72,10 +72,10 @@ export class DashboardComponent implements OnInit {
       to_address: [null],
       precedance: [null],
       security_classification: [null],
-      time_of_receive: [null],
-      despatch_status: [null],
-      time_of_delivery: [null],
-      created_by: [this.user?.id],
+      created_by: [null],
+      created_at: [null],
+      edited_by: [null],
+      edited_at: [null],
     });
     this.form2 = this.formBuilder.group({
       id: [null],
@@ -86,102 +86,102 @@ export class DashboardComponent implements OnInit {
       to_address: [null],
       precedance: [null],
       security_classification: [null],
-      time_of_receive: [null],
-      despatch_status: [null],
-      time_of_delivery: [null],
-      created_by: [this.user?.id],
+      created_by: [null],
+      created_at: [null],
+      edited_by: [null],
+      edited_at: [null],
     });
   }
 
-  private chart1() {
-    this.avgLecChartOptions = {
-      series: [
-        {
-          name: 'Avg. Lecture',
-          data: [65, 72, 62, 73, 66, 74, 63, 67],
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'line',
-        foreColor: '#9aa0ac',
-        dropShadow: {
-          enabled: true,
-          color: '#000',
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        toolbar: {
-          show: false,
-        },
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      xaxis: {
-        categories: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug'],
-        title: {
-          text: 'Weekday',
-        },
-      },
-      yaxis: {},
-      fill: {
-        type: 'gradient',
-        gradient: {
-          shade: 'dark',
-          gradientToColors: ['#35fdd8'],
-          shadeIntensity: 1,
-          type: 'horizontal',
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [0, 100, 100, 100],
-        },
-      },
-      markers: {
-        size: 4,
-        colors: ['#FFA41B'],
-        strokeColors: '#fff',
-        strokeWidth: 2,
-        hover: {
-          size: 7,
-        },
-      },
-      tooltip: {
-        theme: 'dark',
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
-      },
-    };
-  }
+  // private chart1() {
+  //   this.avgLecChartOptions = {
+  //     series: [
+  //       {
+  //         name: 'Avg. Lecture',
+  //         data: [65, 72, 62, 73, 66, 74, 63, 67],
+  //       },
+  //     ],
+  //     chart: {
+  //       height: 350,
+  //       type: 'line',
+  //       foreColor: '#9aa0ac',
+  //       dropShadow: {
+  //         enabled: true,
+  //         color: '#000',
+  //         top: 18,
+  //         left: 7,
+  //         blur: 10,
+  //         opacity: 0.2,
+  //       },
+  //       toolbar: {
+  //         show: false,
+  //       },
+  //     },
+  //     stroke: {
+  //       curve: 'smooth',
+  //     },
+  //     xaxis: {
+  //       categories: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug'],
+  //       title: {
+  //         text: 'Weekday',
+  //       },
+  //     },
+  //     yaxis: {},
+  //     fill: {
+  //       type: 'gradient',
+  //       gradient: {
+  //         shade: 'dark',
+  //         gradientToColors: ['#35fdd8'],
+  //         shadeIntensity: 1,
+  //         type: 'horizontal',
+  //         opacityFrom: 1,
+  //         opacityTo: 1,
+  //         stops: [0, 100, 100, 100],
+  //       },
+  //     },
+  //     markers: {
+  //       size: 4,
+  //       colors: ['#FFA41B'],
+  //       strokeColors: '#fff',
+  //       strokeWidth: 2,
+  //       hover: {
+  //         size: 7,
+  //       },
+  //     },
+  //     tooltip: {
+  //       theme: 'dark',
+  //       marker: {
+  //         show: true,
+  //       },
+  //       x: {
+  //         show: true,
+  //       },
+  //     },
+  //   };
+  // }
 
-  private chart2() {
-    this.pieChartOptions = {
-      series: [44, 55, 13, 43, 22],
-      chart: {
-        type: 'donut',
-        width: 200,
-      },
-      legend: {
-        show: false,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      labels: ['Science', 'Mathes', 'Economics', 'History', 'Music'],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {},
-        },
-      ],
-    };
-  }
+  // private chart2() {
+  //   this.pieChartOptions = {
+  //     series: [44, 55, 13, 43, 22],
+  //     chart: {
+  //       type: 'donut',
+  //       width: 200,
+  //     },
+  //     legend: {
+  //       show: false,
+  //     },
+  //     dataLabels: {
+  //       enabled: false,
+  //     },
+  //     labels: ['Science', 'Mathes', 'Economics', 'History', 'Music'],
+  //     responsive: [
+  //       {
+  //         breakpoint: 480,
+  //         options: {},
+  //       },
+  //     ],
+  //   };
+  // }
 
   onDuplicateButtonClick() {
     this.isForm2Visibile = !this.isForm2Visibile;
@@ -190,6 +190,10 @@ export class DashboardComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ created_at: new Date() });
+      this.form.patchValue({ edited_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ edited_at: new Date() });
       this.despatchEnvelopService.create(this.form.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
@@ -203,6 +207,10 @@ export class DashboardComponent implements OnInit {
 
   onSubmit2() {
     if (this.form2.valid) {
+      this.form.patchValue({ created_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ created_at: new Date() });
+      this.form.patchValue({ edited_by: JSON.parse(localStorage.getItem('currentUser'))?.id });
+      this.form.patchValue({ edited_at: new Date() });
       this.despatchEnvelopService.create(this.form2.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
