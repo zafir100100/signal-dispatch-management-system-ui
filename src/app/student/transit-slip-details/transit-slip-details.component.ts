@@ -35,9 +35,34 @@ export class TransitSlipDetailsComponent implements OnInit {
         updated_by: [null],
         updated_at: [null],
       }),
-      transitSlipEnvelop: this.formBuilder.group({
-        transitSlipEnvelop : this.formBuilder.array
-      })
+      transitSlipEnvelop: [null]
+      // transitSlipEnvelop: this.formBuilder.group({
+      //   transitSlipEnvelop: this.formBuilder.array([])
+      // })
+
+      // transitSlipEnvelop: this.formBuilder.array([
+      //   // this.formBuilder.group({
+      //   //   id: [null],
+      //   //   transit_slip_id: [null],
+      //   //   sl_no: [null],
+      //   //   originator_no: [null],
+      //   //   precedence: [null],
+      //   //   transit_from: [null],
+      //   //   transit_to: [null],
+      //   //   local_despatch_time: [null],
+      //   //   local_despatch_signature: [null],
+      //   //   created_at: [null],
+      //   //   created_by: [null],
+      //   //   updated_by: [null],
+      //   //   updated_at: [null],
+      //   // })
+      // ]),
+
+      // transitSlipEnvelop : this.formBuilder.group({
+      //   "action": [{ value: null, disabled: true }],
+      //   "transitSlipEnvelop": this.formBuilder.array([], Validators.required)
+      // })
+      // transitSlipEnvelop: this.formBuilder.array([])
       // transitSlipEnvelop: 
       // this.formBuilder.array([
       //   // this.formBuilder.group({
@@ -67,28 +92,30 @@ export class TransitSlipDetailsComponent implements OnInit {
     );
   }
 
-  createFormArray(input: any[]): FormArray {
-    return new FormArray(
-      input.map(
-        (item) =>
-          new FormGroup({
-            id: new FormControl(item.id),
-            transit_slip_id: new FormControl(item.transit_slip_id),
-            sl_no: new FormControl(item.sl_no),
-            originator_no: new FormControl(item.originator_no),
-            precedence: new FormControl(item.precedence),
-            transit_from: new FormControl(item.transit_from),
-            transit_to: new FormControl(item.transit_to),
-            local_despatch_time: new FormControl(item.local_despatch_time),
-            local_despatch_signature: new FormControl(item.local_despatch_signature),
-            created_at: new FormControl(item.created_at),
-            created_by: new FormControl(item.created_by),
-            updated_by: new FormControl(item.updated_by),
-            updated_at: new FormControl(item.updated_at)
-          })
-      )
-    );
-  }
+  
+
+  // createFormArray(input: any[]): FormArray {
+  //   return new FormArray(
+  //     input.map(
+  //       (item) =>
+  //         new FormGroup({
+  //           id: new FormControl(item.id),
+  //           transit_slip_id: new FormControl(item.transit_slip_id),
+  //           sl_no: new FormControl(item.sl_no),
+  //           originator_no: new FormControl(item.originator_no),
+  //           precedence: new FormControl(item.precedence),
+  //           transit_from: new FormControl(item.transit_from),
+  //           transit_to: new FormControl(item.transit_to),
+  //           local_despatch_time: new FormControl(item.local_despatch_time),
+  //           local_despatch_signature: new FormControl(item.local_despatch_signature),
+  //           created_at: new FormControl(item.created_at),
+  //           created_by: new FormControl(item.created_by),
+  //           updated_by: new FormControl(item.updated_by),
+  //           updated_at: new FormControl(item.updated_at)
+  //         })
+  //     )
+  //   );
+  // }
 
   getTsById() {
     let requestBody = {
@@ -96,12 +123,9 @@ export class TransitSlipDetailsComponent implements OnInit {
     };
     this.transitSlipService.getById(requestBody).subscribe(
       (res: any) => {
-        // this.users = res?.payload?.output ?? [];
         this.form.patchValue(res?.payload?.output ?? null);
         console.log('hi');
         console.log(this.form.value);
-
-
       },
       (err: any) => {
         Swal.fire({ icon: 'error', title: 'Oops...', text: err ?? 'Something went wrong. Please try again later.' });
