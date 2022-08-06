@@ -13,19 +13,23 @@ export class TransitSlipComponent implements OnInit {
   form: FormGroup;
   user = JSON.parse(localStorage.getItem('currentUser'));
   users: any[] = [];
-  constructor(private formBuilder: FormBuilder, private transitSlipService: TransitSlipService, private userInfoService: UserInfoService) { }
+  constructor(private formBuilder: FormBuilder, private transitSlipService: TransitSlipService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      id: [null],
-      transit_slip_no: [null, [Validators.required]],
-      transit_from: [{ value: this.user?.id, disabled: true }, Validators.required],
-      transit_to: [this.user?.id],
-      transit_method: [null],
-      name_of_courier: [null],
-      transit_date: [null],
-      created_by: [this.user?.id],
-      created_for: [this.user?.id],
+      transitSlip: this.formBuilder.group({
+        id: [null],
+        transit_slip_no: [null],
+        transit_from: [null],
+        transit_to: [null],
+        transit_method: [null],
+        name_of_courier: [null],
+        created_by: [null],
+        created_at: [null],
+        updated_by: [null],
+        updated_at: [null],
+      }),
+      transitSlipEnvelop: [null]
     });
     // this.getAllUser();
   }

@@ -17,85 +17,83 @@
       </div>
     </div>
     <div class="card" style="width: 45rem; margin: auto; float: none; border-radius: 0;">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="card-body">
-          <h6 style="text-align: center;">Signal Despatch Service (SDS) Transit Slip</h6>
-          <div class="row">
-            <div class="col" class="col" style="text-align: center;">
-              <p style="font-size: 12px;">Daspatching Officer</p>
-            </div>
-            <div class="col-6"></div>
-            <div class="col" style="text-align: center;">
-              <p style="font-size: 12px;">Receiving Officer</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col" style="text-align: center;">
-              <input formControlName="transit_date" matInput placeholder="Date Stamp" required style="width: 80px; height: 70px;">
-            </div>
-
-            <div class="col-6">
-              <div class="row">
-                <div class="col-5">
-                  <p style="font-size: 12px;">Transit Slip/Bag No</p>
-                </div>
-                <div class="col-7">
-                  <input formControlName="transit_slip_no" matInput required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;">
-                </div>
+      <!-- (ngSubmit)="onSubmit()" -->
+      <form [formGroup]="form">
+        <div formGroupName="transitSlip">
+          <div class="card-body">
+            <h6 style="text-align: center;">Signal Despatch Service (SDS) Transit Slip</h6>
+            <div class="row">
+              <div class="col" class="col" style="text-align: center;">
+                <p style="font-size: 12px;">Daspatching Officer</p>
               </div>
-              <div class="row">
-                <div class="col-2">
-                  <p style="font-size: 12px;">From</p>
-                </div>
-                <div class="col-10">
-                  <!-- <input matInput formControlName="transit_from" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"> -->
-                  <select class="form-select" aria-label="Default select example" formControlName="transit_from">
-                    <option *ngFor="let element of users" [ngValue]="element?.id">
-                      {{element?.user_full_name}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <p style="font-size: 12px;">To</p>
-                </div>
-                <div class="col-10">
-                  <!-- <input matInput formControlName="transit_to" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"> -->
-                  <select class="form-select" aria-label="Default select example" formControlName="transit_to">
-                    <option *ngFor="let element of users" [ngValue]="element?.id">
-                      {{element?.user_full_name}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-5">
-                  <p style="font-size: 12px;">Route or Method</p>
-                </div>
-                <div class="col-7">
-                  <input matInput formControlName="transit_method" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-5">
-                  <p style="font-size: 12px;">Name of Courior/DR</p>
-                </div>
-                <div class="col-7">
-                  <input matInput formControlName="name_of_courier" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;">
-                </div>
+              <div class="col-6"></div>
+              <div class="col" style="text-align: center;">
+                <p style="font-size: 12px;">Receiving Officer</p>
               </div>
             </div>
-            <div class="col" style="text-align: center;">
-              <input matInput formControlName="transit_date" placeholder="Date Stamp" required
-                style="width: 80px; height: 70px;">
+            <div class="row">
+              <div class="col" style="text-align: center;">
+                <input matInput placeholder="Date Stamp" required style="width: 80px; height: 70px;" >
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-5">
+                    <p style="font-size: 12px;">Transit Slip/Bag No</p>
+                  </div>
+                  <div class="col-7">
+                    <input formControlName="transit_slip_no" matInput required
+                      style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"
+                      >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <p style="font-size: 12px;">From</p>
+                  </div>
+                  <div class="col-10">
+                    <input matInput formControlName="transit_from" required
+                      style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"
+                      >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <p style="font-size: 12px;">To</p>
+                  </div>
+                  <div class="col-10">
+                    <input matInput formControlName="transit_to" required
+                      style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"
+                      >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <p style="font-size: 12px;">Route or Method</p>
+                  </div>
+                  <div class="col-7">
+                    <input matInput formControlName="transit_method" required
+                      style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"
+                      >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <p style="font-size: 12px;">Name of Courior/DR</p>
+                  </div>
+                  <div class="col-7">
+                    <input matInput formControlName="name_of_courier" required
+                      style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;"
+                      >
+                  </div>
+                </div>
+              </div>
+              <div class="col" style="text-align: center;">
+                <input matInput placeholder="Date Stamp" required style="width: 80px; height: 70px;" >
+              </div>
             </div>
           </div>
+        </div>
+        <div>
           <table class="table table-bordered">
             <tr style="font-size: 12px;">
               <th rowspan="2" scope="col">Serial No.</th>
@@ -110,76 +108,35 @@
               <th scope="col">Signature</th>
             </tr>
             <tbody>
-              <tr style="font-size: 12px;">
-                <th scope="row">1</th>
-                <td> <input matInput size="3" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
+              <tr style="font-size: 12px;" *ngFor="let item of form.get('transitSlipEnvelop')?.value">
+                <th scope="row">{{item?.sl_no}}</th>
+                <td> <input value="{{item?.originator_no}}" matInput size="3" required
+                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;"
+                    >
                 </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
+                <td><input value="{{item?.originator_no}}" matInput size="2" required
+                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;"
+                    >
                 </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
+                <td><input value="{{item?.originator_no}}" matInput size="2" required
+                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;"
+                    >
                 </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
+                <td><input value="{{item?.originator_no}}" matInput size="2" required
+                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;"
+                    >
                 </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
+                <td><input value="{{item?.originator_no}}" matInput size="2" required
+                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;"
+                    >
                 </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-              </tr>
-              <tr style="font-size: 12px;">
-                <th scope="row">2</th>
-                <td> <input matInput size="3" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-              </tr>
-              <tr style="font-size: 12px;">
-                <th scope="row">3</th>
-                <td> <input matInput size="3" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
-                </td>
-                <td><input matInput size="2" required
-                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
+                <td><input value="{{item?.originator_no}}" matInput size="2" required
+                    style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;"
+                    >
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="card-footer">
-          <button type="submit" style="border-radius: none;" class="btn btn-primary"
-            [disabled]="form.invalid">Save</button>&nbsp;&nbsp;
-          <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="onSend()">Send</button>
         </div>
       </form>
     </div>
