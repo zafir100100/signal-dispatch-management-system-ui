@@ -129,7 +129,6 @@
                   <td><input formControlName="local_despatch_signature" matInput size="2"
                       style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: hidden;">
                   </td>
-                  <td (click)="del(item)"><i class="fa fa-minus"></i>Minus</td>
                 </div>
               </tr>
             </tbody>
@@ -138,7 +137,7 @@
         <div class="card-footer">
           <div class="row">
             <div class="col">
-              <button type="button" class="btn btn-primary" [disabled]="form.invalid">Send</button>
+              <button type="button" class="btn btn-primary" (click)="onSend()" [disabled]="form.invalid">Send</button>
             </div>
             <div class="col">
               <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>

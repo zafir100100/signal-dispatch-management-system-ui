@@ -56,15 +56,15 @@ export class TransitSlipComponent implements OnInit {
     formArray.push(this.createItem());
   }
 
-  del(input: any) {
-    let formArray: FormArray = this.form.get('transitSlipEnvelop') as FormArray;
-    // formArray.removeAt(formArray.(input));
-    console.log(input);
+  // del(input: any) {
+  //   let formArray: FormArray = this.form.get('transitSlipEnvelop') as FormArray;
+  //   // formArray.removeAt(formArray.(input));
+  //   console.log(input);
 
-    // let x: any[] = this.form.get('transitSlipEnvelop')?.value ?? [];
-    // x.splice(x.indexOf(input), 1);
-    // this.form.patchValue({ transitSlipEnvelop: x });
-  }
+  //   // let x: any[] = this.form.get('transitSlipEnvelop')?.value ?? [];
+  //   // x.splice(x.indexOf(input), 1);
+  //   // this.form.patchValue({ transitSlipEnvelop: x });
+  // }
 
   // getAllUser() {
   //   this.userInfoService.getAll().subscribe(
@@ -88,24 +88,17 @@ export class TransitSlipComponent implements OnInit {
     // for(let item of this.form.controls)
 
     if (this.form.valid) {
-      console.log(this.form.value);
+      // console.log(this.form.value);
+      this.form.patchValue({ created_by: this.user?.id });
 
-      // let g = this.form.getRawValue();
-      // g.transit_to = g.transit_from;
-      // g.created_by = g.transit_from;
-      // g.created_for = g.transit_from;
-      // this.form.patchValue({ transit_to: this.form.get('transit_from')?.value });
-      // this.form.patchValue({ created_by: this.form.get('transit_from')?.value });
-      // this.form.patchValue({ created_for: this.form.get('transit_to')?.value });
-
-      // this.transitSlipService.create(this.form.value).subscribe(
-      //   (t) => {
-      //     Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-      //   },
-      //   (f) => {
-      //     Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-      //   }
-      // );
+      this.transitSlipService.create(this.form.value).subscribe(
+        (t) => {
+          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+        },
+        (f) => {
+          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+        }
+      );
     }
   }
 
