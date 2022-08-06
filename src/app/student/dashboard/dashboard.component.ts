@@ -88,7 +88,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllEnvelops() {
-    this.despatchEnvelopService.getAll().subscribe(
+    let requestBody = {
+      sent_to: this.user?.id,
+    }
+    this.despatchEnvelopService.getByCreatedFor(requestBody).subscribe(
       (t) => {
         this.envelops = t?.payload?.output ?? [];
       },

@@ -44,7 +44,7 @@ export class DespatchEnvelopService {
   }
 
   getByCreatedFor(requestBody: any) {
-    return this.httpClient.post<any>(this.url + 'get-despatch-envelop-by-for-user', requestBody, headerOption);
+    return this.httpClient.post<any>(this.url + 'get-all-despatch-envelop-for-user', requestBody, headerOption);
   }
 
   createDespatchEnvelopDistribution(requestBody: any){
