@@ -27,19 +27,19 @@ export class TransitSlipComponent implements OnInit {
       created_by: [this.user?.id],
       created_for: [this.user?.id],
     });
-    this.getAllUser();
+    // this.getAllUser();
   }
 
-  getAllUser() {
-    this.userInfoService.getAll().subscribe(
-      (res: any) => {
-        this.users = res?.payload?.output ?? [];
-      },
-      (err: any) => {
-        Swal.fire({ icon: 'error', title: 'Oops...', text: err ?? 'Something went wrong. Please try again later.' });
-      }
-    );
-  }
+  // getAllUser() {
+  //   this.userInfoService.getAll().subscribe(
+  //     (res: any) => {
+  //       this.users = res?.payload?.output ?? [];
+  //     },
+  //     (err: any) => {
+  //       Swal.fire({ icon: 'error', title: 'Oops...', text: err ?? 'Something went wrong. Please try again later.' });
+  //     }
+  //   );
+  // }
 
   onSubmit() {
     if (this.form.valid) {
