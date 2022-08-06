@@ -47,4 +47,8 @@ export class TransitSlipService {
   getAllTransitSlipForUser(requestBody: any) {
     return this.httpClient.post<any>(this.url + 'get-all-transit-slip-for-user', requestBody, headerOption);
   }
+
+  createTransitSlipDistribution(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'create-transit-slip-distribution', requestBody, headerOption);
+  }
 }

@@ -13,7 +13,7 @@ export class TransitSlipComponent implements OnInit {
   form: FormGroup;
   user = JSON.parse(localStorage.getItem('currentUser'));
   users: any[] = [];
-  constructor(private formBuilder: FormBuilder, private transitSlipService: TransitSlipService) { }
+  constructor(private formBuilder: FormBuilder, private transitSlipService: TransitSlipService, private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -29,8 +29,12 @@ export class TransitSlipComponent implements OnInit {
         updated_by: null,
         updated_at: null,
       }),
-      transitSlipEnvelop: this.formBuilder.array([])
+      transitSlipEnvelop: this.formBuilder.array([]),
+      sent_from: null,
+      sent_to: null,
+      transit_slip_id: null,
     });
+    this.getAllClerk();
   }
 
   createItem(): FormGroup {
@@ -49,6 +53,20 @@ export class TransitSlipComponent implements OnInit {
       updated_by: null,
       updated_at: null,
     });
+  }
+
+  getAllClerk() {
+    let requestBody = {
+      user_role: 'clerk'
+    }
+    this.userInfoService.getByLikeRole(requestBody).subscribe(
+      (res: any) => {
+        this.users = res?.payload?.output ?? [];
+      },
+      (err: any) => {
+        Swal.fire({ icon: 'error', title: 'Oops...', text: err ?? 'Something went wrong. Please try again later.' });
+      }
+    );
   }
 
   addItem(): void {
@@ -93,6 +111,7 @@ export class TransitSlipComponent implements OnInit {
 
       this.transitSlipService.create(this.form.value).subscribe(
         (t) => {
+          this.form.patchValue(t?.payload?.output);
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
         },
         (f) => {

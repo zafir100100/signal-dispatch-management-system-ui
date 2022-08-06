@@ -47,6 +47,10 @@ export class UserInfoService {
     return this.httpClient.post<any>(this.url + 'get-user-like-fullname', requestBody, headerOption);
   }
 
+  getByLikeRole(requestBody: any) {
+    return this.httpClient.post<any>(this.url + 'get-user-like-role', requestBody, headerOption);
+  }
+
   getAll() {
     return this.httpClient.get<any>(this.url + 'get-all-user', headerOption);
   }
