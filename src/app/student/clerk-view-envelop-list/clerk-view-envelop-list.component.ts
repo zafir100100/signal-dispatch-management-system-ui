@@ -29,10 +29,14 @@ export class ClerkViewEnvelopListComponent implements OnInit {
       to_address: [null],
       precedance: [null],
       security_classification: [null],
-      time_of_receive: [null],
-      despatch_status: [null],
-      time_of_delivery: [null],
       created_by: [null],
+      created_at: [null],
+      updated_by: [null],
+      updated_at: [null],
+      isSendTicked: [false],
+      despatch_envelop_id: [null],
+      sent_from: [null],
+      sent_to: [null],
     });
     this._route.paramMap.subscribe(
       (params: ParamMap) => {
