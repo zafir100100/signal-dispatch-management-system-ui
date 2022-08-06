@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransitSlipService } from 'src/app/services/transit-slip/transit-slip.service';
 import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 import Swal from 'sweetalert2';
@@ -18,20 +18,52 @@ export class TransitSlipComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       transitSlip: this.formBuilder.group({
-        id: [null],
-        transit_slip_no: [null],
-        transit_from: [null],
-        transit_to: [null],
-        transit_method: [null],
-        name_of_courier: [null],
-        created_by: [null],
-        created_at: [null],
-        updated_by: [null],
-        updated_at: [null],
+        id: null,
+        transit_slip_no: [null, Validators.required],
+        transit_from: null,
+        transit_to: null,
+        transit_method: null,
+        name_of_courier: null,
+        created_by: null,
+        created_at: null,
+        updated_by: null,
+        updated_at: null,
       }),
-      transitSlipEnvelop: [null]
+      transitSlipEnvelop: this.formBuilder.array([])
     });
-    // this.getAllUser();
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      id: null,
+      transit_slip_id: null,
+      sl_no: null,
+      originator_no: null,
+      precedence: null,
+      transit_from: null,
+      transit_to: null,
+      local_despatch_time: null,
+      local_despatch_signature: null,
+      created_at: null,
+      created_by: null,
+      updated_by: null,
+      updated_at: null,
+    });
+  }
+
+  addItem(): void {
+    let formArray: FormArray = this.form.get('transitSlipEnvelop') as FormArray;
+    formArray.push(this.createItem());
+  }
+
+  del(input: any) {
+    let formArray: FormArray = this.form.get('transitSlipEnvelop') as FormArray;
+    // formArray.removeAt(formArray.(input));
+    console.log(input);
+
+    // let x: any[] = this.form.get('transitSlipEnvelop')?.value ?? [];
+    // x.splice(x.indexOf(input), 1);
+    // this.form.patchValue({ transitSlipEnvelop: x });
   }
 
   // getAllUser() {
@@ -46,22 +78,34 @@ export class TransitSlipComponent implements OnInit {
   // }
 
   onSubmit() {
+    // console.log(this.form.value);
+    // console.log(this.form.valid);
+
+    // console.log('id : ' + this.form.get('transitSlip').valid);
+    // console.log('id : ' + this.form.get('transitSlipEnvelop').valid);
+
+
+    // for(let item of this.form.controls)
+
     if (this.form.valid) {
-      let g = this.form.getRawValue();
-      g.transit_to = g.transit_from;
-      g.created_by = g.transit_from;
-      g.created_for = g.transit_from;
-      this.form.patchValue({ transit_to: this.form.get('transit_from')?.value });
-      this.form.patchValue({ created_by: this.form.get('transit_from')?.value });
-      this.form.patchValue({ created_for: this.form.get('transit_to')?.value });
-      this.transitSlipService.create(this.form.getRawValue()).subscribe(
-        (t) => {
-          Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
-        },
-        (f) => {
-          Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
-        }
-      );
+      console.log(this.form.value);
+
+      // let g = this.form.getRawValue();
+      // g.transit_to = g.transit_from;
+      // g.created_by = g.transit_from;
+      // g.created_for = g.transit_from;
+      // this.form.patchValue({ transit_to: this.form.get('transit_from')?.value });
+      // this.form.patchValue({ created_by: this.form.get('transit_from')?.value });
+      // this.form.patchValue({ created_for: this.form.get('transit_to')?.value });
+
+      // this.transitSlipService.create(this.form.value).subscribe(
+      //   (t) => {
+      //     Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+      //   },
+      //   (f) => {
+      //     Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
+      //   }
+      // );
     }
   }
 
@@ -70,7 +114,7 @@ export class TransitSlipComponent implements OnInit {
       let g = this.form.getRawValue();
       g.created_by = g.transit_from;
       g.created_for = g.transit_to;
-      
+
       this.form.patchValue({ created_by: this.form.get('transit_from')?.value });
       this.form.patchValue({ created_for: this.form.get('transit_to')?.value });
       this.transitSlipService.create(this.form.getRawValue()).subscribe(
