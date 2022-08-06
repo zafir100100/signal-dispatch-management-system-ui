@@ -30,6 +30,7 @@ export class TransitSlipComponent implements OnInit {
         updated_at: null,
       }),
       transitSlipEnvelop: this.formBuilder.array([]),
+      isSendTicked: false,
       sent_from: null,
       sent_to: null,
       transit_slip_id: null,
@@ -123,13 +124,9 @@ export class TransitSlipComponent implements OnInit {
 
   onSend() {
     if (this.form.valid) {
-      let g = this.form.getRawValue();
-      g.created_by = g.transit_from;
-      g.created_for = g.transit_to;
-
-      this.form.patchValue({ created_by: this.form.get('transit_from')?.value });
-      this.form.patchValue({ created_for: this.form.get('transit_to')?.value });
-      this.transitSlipService.create(this.form.getRawValue()).subscribe(
+      this.form.patchValue({ sent_from: this.user?.id });
+      this.form.patchValue({ transit_slip_id: this.form.get(['transitSlip', 'id'])?.value });
+      this.transitSlipService.createTransitSlipDistribution(this.form.value).subscribe(
         (t) => {
           Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
         },

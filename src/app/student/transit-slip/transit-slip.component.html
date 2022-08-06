@@ -134,6 +134,20 @@
             </tbody>
           </table>
         </div>
+        <div class="row">
+          <div class="col">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="isSendTicked">
+              Select Clerk
+              <select class="custom-select" formControlName="sent_to">
+                <option value="null" [disabled]="true">(Scroll Down)</option>
+                <option *ngFor="let item of users" value={{item?.id}}>
+                  {{item?.user_full_name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="card-footer">
           <div class="row">
             <div class="col">
