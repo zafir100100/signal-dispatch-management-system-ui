@@ -48,7 +48,7 @@
                     <td>{{item?.transitSlip?.name_of_courier}}</td>
                     <td>{{item?.transitSlip?.user_full_name}}</td>
                     <td>
-                      <a [routerLink]="['../transit-slip-details', item?.id]">
+                      <a [routerLink]="['../transit-slip-details', item?.transitSlip?.id]">
                         <button class="btn btn-success">
                           Details
                         </button>
