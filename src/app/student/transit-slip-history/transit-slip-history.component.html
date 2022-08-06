@@ -34,31 +34,19 @@
                     <th>To</th>
                     <th>Route or Method</th>
                     <th>Name of Courior/DR</th>
+                    <th>Sent By</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of transitSlips">
-                    <td>{{item?.id}}</td>
-                    <td>{{item?.transit_slip_no}}</td>
-                    <td>
-                      <select class="form-select" aria-label="Default select example" [disabled]="true">
-                        <option *ngFor="let user of users" [ngValue]="user?.id"
-                          [selected]="user?.id == item?.transit_from">
-                          {{user?.user_full_name}}
-                        </option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-select" aria-label="Default select example" [disabled]="true">
-                        <option *ngFor="let user of users" [ngValue]="user?.id"
-                          [selected]="user?.id == item?.transit_to">
-                          {{user?.user_full_name}}
-                        </option>
-                      </select>
-                    </td>
-                    <td>{{item?.transit_method}}</td>
-                    <td>{{item?.name_of_courier}}</td>
+                    <td>{{item?.transitSlip?.id}}</td>
+                    <td>{{item?.transitSlip?.transit_slip_no}}</td>
+                    <td>{{item?.transitSlip?.transit_from}}</td>
+                    <td>{{item?.transitSlip?.transit_to}}</td>
+                    <td>{{item?.transitSlip?.transit_method}}</td>
+                    <td>{{item?.transitSlip?.name_of_courier}}</td>
+                    <td>{{item?.transitSlip?.user_full_name}}</td>
                     <td>
                       <a [routerLink]="['../transit-slip-details', item?.id]">
                         <button class="btn btn-success">

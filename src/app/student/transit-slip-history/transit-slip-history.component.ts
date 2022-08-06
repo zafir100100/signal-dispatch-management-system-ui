@@ -15,16 +15,16 @@ export class TransitSlipHistoryComponent implements OnInit {
   constructor(private transitSlipService: TransitSlipService, private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
-    this.getAllUser();
+    // this.getAllUser();
     this.getAllTsByUser();
   }
 
   getAllTsByUser() {
     if (this.user?.id) {
       let requestBody = {
-        transit_from: this.user?.id
+        sent_to: this.user?.id
       };
-      this.transitSlipService.getAllTransitFromByUser(requestBody).subscribe(
+      this.transitSlipService.getAllTransitSlipForUser(requestBody).subscribe(
         (res: any) => {
           this.transitSlips = res?.payload?.output ?? [];
         },
@@ -35,16 +35,16 @@ export class TransitSlipHistoryComponent implements OnInit {
     }
   }
 
-  getAllUser() {
-    this.userInfoService.getAll().subscribe(
-      (res: any) => {
-        this.users = res?.payload?.output ?? [];
-      },
-      (err: any) => {
-        Swal.fire({ icon: 'error', title: 'Oops...', text: err ?? 'Something went wrong. Please try again later.' });
-      }
-    );
-  }
+  // getAllUser() {
+  //   this.userInfoService.getAll().subscribe(
+  //     (res: any) => {
+  //       this.users = res?.payload?.output ?? [];
+  //     },
+  //     (err: any) => {
+  //       Swal.fire({ icon: 'error', title: 'Oops...', text: err ?? 'Something went wrong. Please try again later.' });
+  //     }
+  //   );
+  // }
 
   // getUserFullName(id: number) {
   //   console.log('hi');
