@@ -17,8 +17,7 @@
       </div>
     </div>
     <div class="card" style="width: 45rem; margin: auto; float: none; border-radius: 0;">
-      <!-- (ngSubmit)="onSubmit()" -->
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div formGroupName="transitSlip">
           <div class="card-body">
             <h6 style="text-align: center;">Signal Despatch Service (SDS) Transit Slip</h6>
