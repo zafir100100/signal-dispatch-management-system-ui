@@ -91,6 +91,8 @@ export class EnvelopDetailsComponent implements OnInit {
         this.despatchEnvelopService.createDespatchEnvelopDistribution(this.form.value).subscribe(
           (t) => {
             Swal.fire({ icon: 'success', title: 'Success!', text: t?.message ?? 'Operation Successful.' });
+            this.form.patchValue({ status: 'sent' });
+            this.despatchEnvelopService.update(this.form.value).subscribe();
           },
           (f) => {
             Swal.fire({ icon: 'error', title: 'Oops...', text: f ?? 'Something went wrong. Please try again later.' });
@@ -98,5 +100,10 @@ export class EnvelopDetailsComponent implements OnInit {
         );
       }
     }
+  }
+
+  updateEnvelop(){
+    this.envelop
+
   }
 }
