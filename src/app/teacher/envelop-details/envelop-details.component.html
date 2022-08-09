@@ -91,6 +91,41 @@
                 </div>
                 <div class="col"></div>
               </div>
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <div class="form-group">
+                    <input formControlName="status" type="text" class="form-control" placeholder="status"
+                      aria-describedby="textHelp" [readonly]="true">
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <div class="form-group">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="isSendTicked">
+                    Select Registration Clerk
+                    <select class="custom-select" formControlName="sent_to">
+                      <option value="null" [disabled]="true">(Scroll Down)</option>
+                      <option *ngFor="let item of registration_clerks" value={{item?.id}}>
+                        {{item?.user_full_name}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <div class="form-group">
+                    <button class="btn btn-primary" (click)="onSend()">Send</button>
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
             </div>
           </form>
         </div>
