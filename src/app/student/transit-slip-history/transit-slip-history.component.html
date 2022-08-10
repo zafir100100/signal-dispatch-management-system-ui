@@ -35,6 +35,7 @@
                     <th>Route or Method</th>
                     <th>Name of Courior/DR</th>
                     <th>Sent By</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -47,6 +48,7 @@
                     <td>{{item?.transitSlip?.transit_method}}</td>
                     <td>{{item?.transitSlip?.name_of_courier}}</td>
                     <td>{{item?.transitSlip?.user_full_name}}</td>
+                    <td>{{item?.transitSlip?.status}}</td>
                     <td>
                       <a [routerLink]="['../transit-slip-details', item?.transitSlip?.id]">
                         <button class="btn btn-success">

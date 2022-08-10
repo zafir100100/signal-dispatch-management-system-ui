@@ -109,16 +109,18 @@
             <div class="card-footer">
               <div class="row">
                 <div class="col">
-                  <button type="button" class="btn btn-primary" (click)="onDuplicateButtonClick()">Duplicate</button>
+                  <button type="button" class="btn btn-primary" (click)="onDuplicateButtonClick()">Duplicate</button>&nbsp;
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>&nbsp;
+                  <button type="button" class="btn btn-primary" (click)="onSend()" [disabled]="form.invalid || !form.get('isSendTicked')?.value || !form.get('sent_to')?.value">Send</button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary" (click)="onSend()" [disabled]="form.invalid || !form.get('isSendTicked')?.value || !form.get('sent_to')?.value">Send</button>
+                  
                 </div>
                 <!-- <div class="col">
                   <button type="button" class="btn btn-primary">Edit</button>
                 </div> -->
                 <div class="col">
-                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+                  
                 </div>
               </div>
             </div>
