@@ -33,6 +33,7 @@
                     <th>Letter To</th>
                     <th>Letter Date</th>
                     <th>Ltr No</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -43,6 +44,7 @@
                     <td>{{item?.to_address}}</td>
                     <td>{{item?.date_time_group}}</td>
                     <td>{{item?.letter_no}}</td>
+                    <td></td>
                     <td>
                       <button [routerLink]="['../view-envelope', item?.id]" mat-flat-button color="primary">Details</button>
                     </td>

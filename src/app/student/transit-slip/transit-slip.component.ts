@@ -74,6 +74,11 @@ export class TransitSlipComponent implements OnInit {
     let formArray: FormArray = this.form.get('transitSlipEnvelop') as FormArray;
     formArray.push(this.createItem());
   }
+  rows=[0]
+  addRow(){
+    this.rows.push(this.rows.length+1)
+    //console.log(this.rows)
+  }
 
   // del(input: any) {
   //   let formArray: FormArray = this.form.get('transitSlipEnvelop') as FormArray;
@@ -125,6 +130,7 @@ export class TransitSlipComponent implements OnInit {
   onSend() {
     if (this.form.valid) {
       this.form.patchValue({ sent_from: this.user?.id });
+      this.form.patchValue({ status: 'sent' });
       this.form.patchValue({ transit_slip_id: this.form.get(['transitSlip', 'id'])?.value });
       this.transitSlipService.createTransitSlipDistribution(this.form.value).subscribe(
         (t) => {
